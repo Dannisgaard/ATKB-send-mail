@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Opret tekster
+        </h1>
+    </div>
+</div>
+
+<form method="post" action="./oprettekster/mailtext">
+    <div class="row mt-5">
+        <div class="col-md-10 border offset-md-1">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label for="tekstName">Tekstnavn:</label>
+                        <input type="text" class="form-control" id="tekstName" name="tekstName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="firstName">Mailtekst:</label>
+                        <textarea class="form-control" rows="15" cols="15" maxlength="1000" id="mailtext"
+                            name="mailtext"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <pre class="float-left">Næste fredag dato: ##dato##  &nbsp; Fornavn: ##navn##</pre>
+                    <div class="form-group float-right">
+                        <button type="submit" class="btn btn-primary">Indsæt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" action="./oprettekster/smstext">
+    <div class="row mt-5">
+        <div class="col-md-10 border offset-md-1">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label for="tekstName">Tekstnavn:</label>
+                        <input type="text" class="form-control" id="tekstName" name="tekstName">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="firstName">SMStekst:</label>
+                        <textarea class="form-control" maxlength="318" rows="8" cols="15" id="smstext"
+                            name="smstext"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <pre class="float-left">Næste fredag dato: ##dato##  &nbsp; Fornavn: ##navn##</pre>
+                    <div class="form-group float-right">
+                        <button type="submit" class="btn btn-primary">Indsæt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

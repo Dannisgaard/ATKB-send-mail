@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Mail lister
+        </h1>
+    </div>
+</div>
+
+{% if persons %}
+<div class="row">
+    <div class="col-md-10 offset-md-1 pr-0 pl-0">
+        <table class="table border" style="height: 250px; overflow-y: scroll;">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Fornavn</th>
+                    <th scope="col">Efternavn</th>
+                    <th scope="col">Medlem</th>
+                    <th scope="col">Fredagsbar</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <th scope="row">{{person.person_id}}</th>
+                    <td>{{person.person_fistName}}</td>
+                    <td>{{person.person_lastName}}</td>
+                    <form action="/lister/{{person.person_id}}" method="POST">
+                        <td><input type="checkbox" name="maillist" value="medlem"
+                                {% for mailtype in person.mailslists %} {% if mailtype.mail_name == 'medlem' %} checked
+                                {% endif %} {% endfor %} /></td>
+                        <td><input type="checkbox" name="maillist" value="fredagsbar"
+                                {% for mailtype in person.mailslists %} {% if mailtype.mail_name == 'fredagsbar' %}
+                                checked {% endif %} {% endfor %} /></td>
+                        <td>
+                            <button class="btn btn-sm" type="submit">Opdatere </button>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

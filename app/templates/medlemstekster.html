@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Vælg medlems tekster
+        </h1>
+    </div>
+</div>
+
+<form method="post" action="./edittext/mailtext">
+    <div class="row mt-5">
+        <div class="col-md-10 border offset-md-1">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="tekster">Tekster:</label>
+                        <select class="form-control" name="medlemsmailtekster" id="medlemsmailtekster"
+                            placeholder="nodet">
+                            <option value="" disabled selected>Vælg en tekst.</option>
+                            {% for text in mail_text_messages %}
+                            <option id="{{text.mailtextmessage_id}}">{{ text.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="firstName">Mailtekst:</label>
+                        <textarea class="form-control" rows="15" cols="15" maxlength="1000" id="mailtext"
+                            name="mailtext"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <pre class="float-left">Fornavn: ##navn##</pre>
+                    <div class="form-group float-right">
+                        <button type="submit" class="btn btn-primary">Opdater</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" action="./edittext/smstext">
+    <div class="row mt-5">
+        <div class="col-md-10 border offset-md-1">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="tekster">Tekster:</label>
+                        <select class="form-control" name="medlemssmstekster" id="medlemssmstekster"
+                            placeholder="nodet">
+                            <option value="" disabled selected>Vælg en tekst.</option>
+                            {% for text in sms_text_messages %}
+                            <option id="{{text.smstextmessage_id}}">{{ text.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="firstName">SMStekst:</label>
+                        <textarea class="form-control" maxlength="318" rows="8" cols="15" id="smstext"
+                            name="smstext"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <pre class="float-left">Fornavn: ##navn##</pre>
+                    <div class="form-group float-right">
+                        <button type="submit" class="btn btn-primary">Opdater</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Fredagsbar mailudsendelse
+        </h1>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    <label for="firstName">Mailtekst:</label><span class="float-right">Send dato:
+                        {{mailsenddate}}</span>
+                    <textarea class="form-control" disabled rows="13" cols="15" maxlength="1000" id="mailtext"
+                        name="mailtext">{{mailtext}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 ">
+                <div class="form-group">
+                    <label for="firstName">Smstekst:</label><span class="float-right">Send dato: {{smssenddate}}</span>
+                    <textarea class="form-control" disabled maxlength="318" rows="7" cols="15" id="smstext"
+                        name="smstext">{{smstext}}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="POST">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group float-right">
+                <button type="submit" class="btn btn-primary">Send mail og SMS til alle fredagsbar modtagere
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

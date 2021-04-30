@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center text-info font-weight-bold mt-3">
+      Allerup, Thorup kultur og beboerforeningmailudsendelse
+    </h1>
+    <h2 class="text-center text-info">
+      Sender individuelle mails ud til fredagsbarmail modtagere og medlemmer
+    </h2>
+    <p class="text-center">
+      {% if current_user.is_authenticated %}
+      Du er logget ind som {{ current_user.given_name }}!
+    </p>
+    <p class="text-center">
+      <a href="{{ url_for('logout') }}">Log out</a>
+      {% else %}
+      You are not logged in.
+      <a href="{{ url_for('google.login') }}">Log in med Google</a>
+      {% endif %}
+    </p>
+  </div>
+</div>
+{% endblock %}

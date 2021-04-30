@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Administrere personer
+        </h1>
+    </div>
+</div>
+{% if persons %}
+<div class="row">
+    <div class="col-md-10 offset-md-1 pr-0 pl-0">
+        <table class="table border" style="height: 250px; overflow-y: scroll;">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Fornavn</th>
+                    <th scope="col">Efternavn</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col">Slet</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <th scope="row">{{person.person_id}}</th>
+                    <td>{{person.person_fistName}}</td>
+                    <td>{{person.person_lastName}}</td>
+                    <td>{{person.person_email}}</td>
+                    <td>{{person.person_phone}}</td>
+                    <td>
+                        <form action="/person/{{person.person_id}}" method="POST">
+                            <button class="btn btn-link btn-xs" type="submit" value="Delete">
+                                <i class="fa fa-times fa-lg" aria-hidden="true"
+                                    style="color: red; cursor: pointer;"></i>
+                                </input>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+<form method="post">
+    <div class="row mt-5">
+        <div class="col-md-10 border offset-md-1">
+            <div class="row">
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <label for="firstName">Fornavn:</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lastName">Efternavn:</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="phone">Telefon:</label>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Indsæt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

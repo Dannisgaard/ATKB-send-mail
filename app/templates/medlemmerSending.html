@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Medlemmer mailudsendelse er igang
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table" id="mail_send">
+            <thead>
+                <tr>
+                    <th>Tid</th>
+                    <th>Sendt til</th>
+                    <th>Mail adr.</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+    setInterval(                               //Periodically 
+        function () {
+            $.getJSON(                            //Get some values from the server
+                'http://' + document.domain + ':' + location.port + '/mail/sendmaillogtext',      // At this URL
+                {},                                // With no extra parameters
+                function (data)                     // And when you get a response
+                {
+                    var tbl_body = "";
+                    var odd_even = false;
+                    $.each(data, function () {
+                        var tbl_row = "";
+                        tbl_row += "<td>" + this.time + "</td>";
+                        tbl_row += "<td>" + this.sendto + "</td>";
+                        tbl_row += "<td>" + this.email_adr + "</td>";
+                        tbl_body += "<tr class=\"" + (odd_even ? "odd" : "even") + "\">" + tbl_row + "</tr>";
+                        odd_even = !odd_even;
+                    })
+                    $("#mail_send tbody").html(tbl_body);
+                });
+        },
+        1000);                                    
+</script>
+{% endblock %}

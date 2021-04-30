@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center text-info font-weight-bold mt-3">
+            Medlemmer mailudsendelse
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 offset-md-1 mt-3">
+        <div class="form-group">
+            <label for="mailtext">Mailtekst:</label>
+            <textarea disabled class="form-control" rows="15" cols="15" maxlength="1000" id="mailtext"
+                name="mailtext">{{mailtext}}</textarea>
+        </div>
+    </div>
+</div>
+<form method="POST" action="./sendmail/medlemmer">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+                <label for="tekstName">Emne:</label>
+                <input type="text" class="form-control" id="subject" name="subject">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group float-right">
+                <button type="submit" class="btn btn-primary">Send mail til alle medlemmer</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
