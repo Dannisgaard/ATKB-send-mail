@@ -311,7 +311,7 @@ def members_worker(mailtext, all_members, db, app):
             if member.person_email is not None and member.person_email != "":
                 print(member.person_email)
                 print(member.person_fistName)
-                msg = MIMEMultipart("alternative")
+                msg = MIMEMultipart("html")
                 msg["Subject"] = subject
                 msg["From"] = formataddr(
                     ("Allerup Thorup -kultur og beboerforening", me)
@@ -426,7 +426,7 @@ def fredagsbar_worker(mailtext, smstext, all_fredagsbar_member, db, app, friday_
     with app.app_context():
         for member in all_fredagsbar_member:
             if member.person_email is not None and member.person_email != "":
-                msg = MIMEMultipart("alternative")
+                msg = MIMEMultipart("html")
                 msg["Subject"] = "Fredagsbar i Allerup Forsamlingshus"
                 msg["From"] = formataddr(
                     ("Allerup Thorup -kultur og beboerforening", me)

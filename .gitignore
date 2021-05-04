@@ -1,6 +1,6 @@
 *.pyc
 .env
 .env.prod
-atkb-venv
+venv
 .vscode/
 app.sqlite3
