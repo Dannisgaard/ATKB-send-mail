@@ -321,7 +321,7 @@ def members_worker(mailtext, all_members, db, app):
                 msg["Message-id"] = today.isoformat() + "@dannisgaard.dk"
 
                 # Create the body of the message (a plain-text and an HTML version).
-                text = mailtext.replace("##navn##", member.person_fistName)
+                # text = mailtext.replace("##navn##", member.person_fistName)
                 html = (
                     """
                 <html>
@@ -338,13 +338,13 @@ def members_worker(mailtext, all_members, db, app):
                 """
                 )
                 # Record the MIME types of both parts - text/plain and text/html.
-                part1 = MIMEText(text, "plain", "utf-8")
+                # part1 = MIMEText(text, "plain", "utf-8")
                 part2 = MIMEText(html, "html", "utf-8")
 
                 # Attach parts into message container.
                 # According to RFC 2046, the last part of a multipart message, in this case
                 # the HTML message, is best and preferred.
-                msg.attach(part1)
+                # msg.attach(part1)
                 msg.attach(part2)
 
                 if path_and_filename  != '':
@@ -437,7 +437,7 @@ def fredagsbar_worker(mailtext, smstext, all_fredagsbar_member, db, app, friday_
 
                 # Create the body of the message (a plain-text and an HTML version).
 
-                text = mailtext.replace("##dato##", friday_date.strftime("%d-%m-%Y"), 1).replace("##navn##", member.person_fistName)
+                # text = mailtext.replace("##dato##", friday_date.strftime("%d-%m-%Y"), 1).replace("##navn##", member.person_fistName)
                 html = (
                     """
                 <html>
@@ -456,13 +456,13 @@ def fredagsbar_worker(mailtext, smstext, all_fredagsbar_member, db, app, friday_
                 """
                 )
                 # Record the MIME types of both parts - text/plain and text/html.
-                part1 = MIMEText(text, "plain", "utf-8")
+                # part1 = MIMEText(text, "plain", "utf-8")
                 part2 = MIMEText(html, "html", "utf-8")
 
                 # Attach parts into message container.
                 # According to RFC 2046, the last part of a multipart message, in this case
                 # the HTML message, is best and preferred.
-                msg.attach(part1)
+                # msg.attach(part1)
                 msg.attach(part2)
 
                 # python -m smtpd -c DebuggingServer -n localhost:1025 for test
