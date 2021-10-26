@@ -44,7 +44,6 @@ def google_logged_in(blueprint, token):
         allowed_users = [
             "lars@dannisgaard.dk",
             "lars.radoor.hansen@gmail.com",
-            "bentsenbirgittabruun@gmail.com",
         ]
 
         if info["email"].lower() in allowed_users:

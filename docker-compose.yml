@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  pi4-network:
+    external: true
+
+
+services:
+  atkb:
+    restart: always
+    image: 'radoor/atkb:latest'
+
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+
+    networks:
+      - pi4-network
+
+    volumes:
+      - ./data/atkb/:/usr/src/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.prod

@@ -29,7 +29,7 @@
     setInterval(                               //Periodically 
         function () {
             $.getJSON(                            //Get some values from the server
-                'http://' + document.domain + ':' + location.port + '/mail/sendmaillogtext',      // At this URL
+                'https://' + document.domain + ':' + location.port + '/mail/sendmaillogtext',      // At this URL
                 {},                                // With no extra parameters
                 function (data)                     // And when you get a response
                 {
