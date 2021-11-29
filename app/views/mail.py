@@ -408,7 +408,7 @@ def fredagsbar_worker(mailtext, smstext, all_fredagsbar_member, db, app, friday_
     print("Starter mail udsendelse\n")
     # sms auth
     auth_headers = {"Accept": "application/json"}
-    auth_payload = "grant_type=password&username=Allerup&password=B7Em4cy6"
+    auth_payload = "grant_type=password&username=Allerup&password=" + app.config["SURESMS_API_PW"]
 
     r = requests.post(
         "https://api.suresms.com/json/token", data=auth_payload, headers=auth_headers
@@ -450,7 +450,7 @@ def fredagsbar_worker(mailtext, smstext, all_fredagsbar_member, db, app, friday_
                     .replace("\n", "<br/>")
                     + """</p>
                 </font>
-                <img src="http://resurser.dannisgaard.dk/images/fredagsbar-skilt.jpg" width="780" height="709" border="0"/>  
+                <img src="https://resurser.dannisgaard.dk/images/fredagsbar-skilt.jpg" width="780" height="709" border="0"/>  
                 </body>
                 </html>
                 """
