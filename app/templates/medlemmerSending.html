@@ -29,7 +29,8 @@
     setInterval(                               //Periodically 
         function () {
             $.getJSON(                            //Get some values from the server
-                'https://' + document.domain + ':' + location.port + '/mail/sendmaillogtext',      // At this URL
+                //'https://' + document.domain + ':' + location.port + '/mail/sendmaillogtext',      // At this URL 
+                'http://atkb' + ':' + 5000 + '/mail/sendmaillogtext',      // local in docker 
                 {},                                // With no extra parameters
                 function (data)                     // And when you get a response
                 {
