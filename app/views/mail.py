@@ -372,7 +372,7 @@ def members_worker(mailtext, all_members, db, app):
                     s.ehlo()
                     if app.config["TLS"] == "True":
                         s.starttls()
-                        # s.login("lars@dannisgaard.dk", app.config["SMTPPASS"])
+                        s.login("lars@dannisgaard.dk", app.config["SMTPPASS"])
 
                     s.sendmail(me, member.person_email, msg.as_string())
 
