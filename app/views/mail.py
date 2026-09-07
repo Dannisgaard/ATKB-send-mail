@@ -43,7 +43,7 @@ def fredagsbar():
         .first()
         .text
     )
-    smstype_fredagsbar = Mail.query.filter_by(mail_id=1).first()
+    smstype_fredagsbar = Mail.query.filter_by(mail_id=3).first()
     smstext = (
         SmsTextMessage.query.filter_by(
             smstextmessage_id=smstype_fredagsbar.smsTextmessage_id
@@ -233,13 +233,28 @@ def edit_mailtext():
     text = request.form["mailtext"]
     textName = request.form["medlemsmailtekster"]
 
-    mailtype = Mail.query.filter_by(mail_id=3).first()
+    mailtype = Mail.query.filter_by(mail_id=1).first()
     text_id = mailtype.mailTextmessage_id
     newtext = MailTextMessage.query.filter_by(name=textName).first()
 
     newtext.text = text
     db.session.commit()
     flash("Mail tekst er nu opdateret!")
+    return redirect(url_for("home.home"))
+
+
+@mail_blueprint.route("/edittext/fredagsbarmailtext", methods=["POST"])
+def edit_fredagsbarmailtext():
+    text = request.form["mailtext"]
+    textName = request.form["medlemsmailtekster"]
+
+    mailtype = Mail.query.filter_by(mail_id=3).first()
+    text_id = mailtype.mailTextmessage_id
+    newtext = MailTextMessage.query.filter_by(name=textName).first()
+    mailtype.mailTextmessage_id = newtext.mailtextmessage_id
+    newtext.text = text
+    db.session.commit()
+    flash("Fredagsbarmail tekst er nu opdateret!")
     return redirect(url_for("home.home"))
 
 
@@ -251,7 +266,7 @@ def edit_smstext():
     mailtype = Mail.query.filter_by(mail_id=3).first()
     text_id = mailtype.smsTextmessage_id
     newtext = SmsTextMessage.query.filter_by(name=textName).first()
-
+    mailtype.smsTextmessage_id = newtext.smstextmessage_id
     newtext.text = text
     db.session.commit()
     flash("SMS tekst er nu opdateret!")
